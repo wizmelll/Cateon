@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://byjlmiwndenag"]
+
+[ext_resource type="Texture2D" uid="uid://7bkl4h48n0sw" path="res://assets/textbox up (1).png" id="1_2dk00"]
+[ext_resource type="Texture2D" uid="uid://l4ekdijcsqge" path="res://assets/New Piskel.png" id="1_k2pwd"]
+[ext_resource type="PackedScene" uid="uid://do5p0f228rs6u" path="res://scenes/enemy.tscn" id="2_4ufb6"]
+[ext_resource type="Texture2D" uid="uid://babtw7indt8p3" path="res://assets/texbox bottom.png" id="2_ad8ck"]
+[ext_resource type="Texture2D" uid="uid://3k3uvoo0fqf6" path="res://assets/heart (1).png" id="3_6rqox"]
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="4_tealo"]
+[ext_resource type="Texture2D" uid="uid://daho32g7g5wvm" path="res://assets/mana (1).png" id="5_snf0j"]
+[ext_resource type="Texture2D" uid="uid://bhpm6lkpy8u7b" path="res://assets/card2-defend (1).png" id="6_7nnk6"]
+[ext_resource type="PackedScene" uid="uid://64y5sbo01cks" path="res://scenes/card_1.tscn" id="6_udy2m"]
+[ext_resource type="PackedScene" uid="uid://whl7acuiflf5" path="res://scenes/cardslot_1.tscn" id="10_rm3h2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fueqd"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3o6r"]
+size = Vector2(256, 68)
+
+[node name="combat" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+modulate = Color(0.54099, 0.54099, 0.54099, 1)
+position = Vector2(125, 7)
+scale = Vector2(1.05078, 1.38542)
+texture = ExtResource("1_k2pwd")
+metadata/_edit_lock_ = true
+
+[node name="blueBootsRat" parent="." groups=["dropable"] instance=ExtResource("2_4ufb6")]
+position = Vector2(128, 57)
+
+[node name="card drop area2" type="Area2D" parent="blueBootsRat"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blueBootsRat/card drop area2"]
+shape = SubResource("RectangleShape2D_fueqd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextboxUp" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(128, 12)
+texture = ExtResource("1_2dk00")
+metadata/_edit_lock_ = true
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(-117, 1.90735e-06)
+scale = Vector2(0.427083, 0.427083)
+texture = ExtResource("3_6rqox")
+
+[node name="health" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -112.0
+offset_top = -10.0
+offset_right = -72.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+text = "13/72"
+vertical_alignment = 1
+
+[node name="shieldbar" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -65.0
+offset_top = -10.0
+offset_right = -25.0
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+text = "13"
+vertical_alignment = 1
+
+[node name="shield" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(-70, 1.90735e-06)
+scale = Vector2(0.427, 0.427)
+texture = ExtResource("6_7nnk6")
+
+[node name="manabar2" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -35.876
+offset_top = -10.0
+offset_right = 4.12401
+offset_bottom = 13.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+text = "13/72"
+vertical_alignment = 1
+
+[node name="Mana2" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(-40.876, 1.90735e-06)
+scale = Vector2(0.427, 0.427)
+texture = ExtResource("5_snf0j")
+
+[node name="TexboxBottom" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(128, 120)
+texture = ExtResource("2_ad8ck")
+metadata/_edit_lock_ = true
+
+[node name="card2" parent="CanvasLayer" instance=ExtResource("6_udy2m")]
+offset_left = 76.0
+offset_top = 107.0
+offset_right = 106.0
+offset_bottom = 155.0
+
+[node name="player card drop" type="Area2D" parent="." groups=["dropable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player card drop"]
+position = Vector2(128, 60)
+shape = SubResource("RectangleShape2D_m3o6r")
+debug_color = Color(0, 0.562919, 0.0779877, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="Hand" type="Node2D" parent="."]
+
+[node name="cardslot1" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(92, 132)
+
+[node name="cardslot2" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(132, 132)
+
+[node name="cardslot3" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(172, 132)
+
+[node name="cardslot4" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(212, 132)
+
+[connection signal="body_entered" from="player card drop" to="CanvasLayer/card2" method="_on_player_card_drop_body_entered"]
+[connection signal="body_exited" from="player card drop" to="CanvasLayer/card2" method="_on_player_card_drop_body_exited"]

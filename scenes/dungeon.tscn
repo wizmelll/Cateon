@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtnsybh5ajvru"]
+
+[ext_resource type="PackedScene" uid="uid://brw5d8wlnvqoe" path="res://scenes/protag.tscn" id="1_lu13v"]
+[ext_resource type="PackedScene" uid="uid://fy05ly3e33ak" path="res://scenes/start_battle.tscn" id="2_fc10o"]
+
+[node name="Dungeon" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_lu13v")]
+position = Vector2(128, 64)
+
+[node name="start battle" parent="." instance=ExtResource("2_fc10o")]
+position = Vector2(128, 32)
