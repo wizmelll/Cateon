@@ -34,6 +34,7 @@ offset_bottom = 12.0
 theme_override_font_sizes/font_size = 9
 theme_override_styles/background = SubResource("StyleBoxFlat_v5aio")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bud5g")
+max_value = 20.0
 step = 1.0
 rounded = true
 fill_mode = 3

@@ -17,7 +17,7 @@ config/icon="res://assets/blue boots Rat.png"
 
 [autoload]
 
-global="*res://autoload.gd"
+global="*res://scripts/global.gd"
 
 [display]
 
