@@ -97,6 +97,16 @@ position = Vector2(-40.876, 1.90735e-06)
 scale = Vector2(0.427, 0.427)
 texture = ExtResource("5_snf0j")
 
+[node name="description" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -122.0
+offset_top = 91.0
+offset_right = -70.0
+offset_bottom = 126.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+metadata/_edit_lock_ = true
+
 [node name="end turn" type="Label" parent="CanvasLayer/TextboxUp"]
 offset_left = 79.0
 offset_top = 65.0
@@ -107,17 +117,6 @@ theme_override_fonts/font = ExtResource("4_tealo")
 theme_override_font_sizes/font_size = 6
 text = "end turn"
 
-[node name="Hand" type="Node2D" parent="CanvasLayer"]
-
-[node name="description" type="Label" parent="CanvasLayer/Hand"]
-offset_left = 6.0
-offset_top = 103.0
-offset_right = 58.0
-offset_bottom = 138.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_tealo")
-theme_override_font_sizes/font_size = 6
-
 [node name="player card drop" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player card drop"]
@@ -125,6 +124,8 @@ position = Vector2(128, 60)
 shape = SubResource("RectangleShape2D_m3o6r")
 debug_color = Color(0, 0.562919, 0.0779877, 0.42)
 metadata/_edit_lock_ = true
+
+[node name="Hand" type="Node2D" parent="."]
 
 [node name="cardslot1" parent="." instance=ExtResource("10_rm3h2")]
 position = Vector2(91, 132)
@@ -169,7 +170,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_tealo")
 theme_override_font_sizes/font_size = 6
 
-[connection signal="area_entered" from="player card drop" to="." method="_on_player_card_drop_area_entered"]
 [connection signal="mouse_entered" from="end turn button" to="." method="_on_end_turn_button_mouse_entered"]
 [connection signal="mouse_exited" from="end turn button" to="." method="_on_end_turn_button_mouse_exited"]
 [connection signal="pressed" from="end turn button" to="." method="_on_end_turn_button_pressed"]

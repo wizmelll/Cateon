@@ -5,7 +5,8 @@ var is_inside_dropable = false
 var body_ref
 var offset: Vector2
 var initialPos: Vector2
-@onready var description: Label = $"../TextboxUp/description"
+@onready var description: Label = $"../description"
+
 #---------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if draggable:
@@ -23,7 +24,6 @@ func _process(delta: float) -> void:
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				global.player_shield = global.player_shield + 5
 				global.player_mana = global.player_mana - card_cost
-				print(global.enemyBBR_health)
 				queue_free()
 			else:
 				description.text = ""
@@ -52,3 +52,4 @@ func _on_area_2d_body_entered(body:StaticBody2D) -> void:
 func _on_area_2d_body_exited(body: StaticBody2D) -> void:
 	if body.is_in_group("dropable"):
 		is_inside_dropable = false
+		
