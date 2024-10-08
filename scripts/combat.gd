@@ -23,11 +23,12 @@ var new_card
 
 func _ready() -> void:
 	#Schaden von Gegner berechnen
-	global.current_deck = global.player_deck.duplicate(true)
-	global.player_hand = []
 	random.randomize()
 	damage = random.randi_range(global.enemyBBR_damage_min, global.enemyBBR_damage_max)
 	#Deck und Hand laden
+	global.current_deck = global.player_deck.duplicate()
+	global.player_hand = []
+	global.current_deck.shuffle()
 	draw_cards()
 	current_hand()
 func _physics_process(delta: float) -> void: 
@@ -59,20 +60,21 @@ func _process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------
 # cards management
 func current_hand():
-	global.player_hand[0].position = cardslot_1.position - Vector2(16, 24)
-	global.player_hand[1].position = cardslot_2.position - Vector2(16, 24)
-	global.player_hand[2].position = cardslot_3.position - Vector2(16, 24)
-	global.player_hand[3].position = cardslot_4.position - Vector2(16, 24)
+		global.player_hand[0].position = cardslot_1.position - Vector2(16, 24)
+		global.player_hand[1].position = cardslot_2.position - Vector2(16, 24)
+		global.player_hand[2].position = cardslot_3.position - Vector2(16, 24)
+		global.player_hand[3].position = cardslot_4.position - Vector2(16, 24)
 
 func draw_cards():
-	#cards_to_draw = 4 - global.player_hand.size()
 	global.player_hand = []
 	for n in 4:
 		new_card = global.current_deck.pick_random().instantiate()
 		global.player_hand.push_front(new_card)
+		print(global.current_deck)
+		print("#---------------------------------------------------------------------------------------------------")
 		global.current_deck.erase(new_card)
+		print(global.current_deck)
 		hand.add_child(new_card)
-	
 
 func refresh_deck():
 	if global.current_deck.size() <= cards_to_draw:

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const speed = 45
+const speed = 50
 @onready var animation_player = $AnimationPlayer
 #---------------------------------------------------------------------------------------------------
 #eine Funktion, die die Bewegung des Spielers anhand vom Input bestimmen wird

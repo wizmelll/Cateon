@@ -22,12 +22,14 @@ func _process(delta: float) -> void:
 			if is_inside_dropable and global.player_mana >= card_cost:
 				description.text = ""
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
+				tween.bind_node(self)
 				global.enemyBBR_health = global.enemyBBR_health - 5
 				global.player_mana = global.player_mana - card_cost
 				queue_free()
 			else:
 				description.text = ""
 				tween.tween_property(self, "global_position", initialPos, 0.2).set_ease(Tween.EASE_OUT)
+				tween.bind_node(self)
 
 func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
