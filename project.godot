@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Cateon"
-run/main_scene="res://scenes/dungeon.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/blue boots Rat.png"
 
 [autoload]
 
 global="*res://scripts/global.gd"
+DungeonGen="*res://scripts/dungeon_gen.gd"
 
 [display]
 

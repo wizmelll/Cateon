@@ -5,3 +5,4 @@ func _on_body_entered(body):
 	global.player_health = global.player_max_health
 	global.player_mana = global.player_max_mana
 #---------------------------------------------------------------------------------------------------
+#to-do: save player position

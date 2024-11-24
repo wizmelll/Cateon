@@ -1,12 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtnsybh5ajvru"]
 
-[ext_resource type="PackedScene" uid="uid://brw5d8wlnvqoe" path="res://scenes/protag.tscn" id="1_lu13v"]
-[ext_resource type="PackedScene" uid="uid://fy05ly3e33ak" path="res://scenes/start_battle.tscn" id="2_fc10o"]
+[ext_resource type="Script" path="res://scripts/dungeon.gd" id="1_qup61"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_hkpnd"]
 
 [node name="Dungeon" type="Node2D"]
+script = ExtResource("1_qup61")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_lu13v")]
-position = Vector2(128, 64)
+[node name="map" type="Node2D" parent="."]
 
-[node name="start battle" parent="." instance=ExtResource("2_fc10o")]
-position = Vector2(128, 32)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(129, 72)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_hkpnd")

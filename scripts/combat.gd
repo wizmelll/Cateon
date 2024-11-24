@@ -1,8 +1,8 @@
 extends Node2D
+
 var random = RandomNumberGenerator.new()
 var damage
 #---------------------------------------------------------------------------------------------------
-var cards_to_draw
 var new_card
 #---------------------------------------------------------------------------------------------------
 #labels
@@ -19,8 +19,6 @@ var new_card
 @onready var cardslot_3: StaticBody2D = $cardslot3
 @onready var cardslot_4: StaticBody2D = $cardslot4
 
-#---------------------------------------------------------------------------------------------------
-
 func _ready() -> void:
 	#Schaden von Gegner berechnen
 	random.randomize()
@@ -28,9 +26,11 @@ func _ready() -> void:
 	#Deck und Hand laden
 	global.current_deck = global.player_deck.duplicate()
 	global.player_hand = []
+	global.player_graveyard = []
 	global.current_deck.shuffle()
 	draw_cards()
 	current_hand()
+
 func _physics_process(delta: float) -> void: 
 	#setzen von verschiedene Labels
 	player_health(global.player_health, global.player_max_health)
@@ -51,36 +51,54 @@ func player_mana(player_mana, player_max_mana):
 func enemy_next_action(damage):
 	enemy_action.text = str(damage)
 #---------------------------------------------------------------------------------------------------
-#check für Tode
+#Karten Management
+func draw_cards():
+	#refresh_deck()
+	for i in range(4):
+		var card_scene = global.current_deck.pick_random()
+		if card_scene == null:
+			continue
+		var new_card = card_scene.instantiate()
+		if new_card != null:
+			global.player_hand.append(new_card)
+			#global.current_deck.erase(card_scene)
+			hand.add_child(new_card)
+			new_card.position = cardslot_position(i) - Vector2(16, 24)
+
 func _process(delta: float) -> void:
 	if global.enemyBBR_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/dungeon.tscn")
 	elif global.player_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/dungeon.tscn")
-#---------------------------------------------------------------------------------------------------
-# cards management
-func current_hand():
-		global.player_hand[0].position = cardslot_1.position - Vector2(16, 24)
-		global.player_hand[1].position = cardslot_2.position - Vector2(16, 24)
-		global.player_hand[2].position = cardslot_3.position - Vector2(16, 24)
-		global.player_hand[3].position = cardslot_4.position - Vector2(16, 24)
-
-func draw_cards():
-	global.player_hand = []
-	for n in 4:
-		new_card = global.current_deck.pick_random().instantiate()
-		global.player_hand.push_front(new_card)
-		print(global.current_deck)
-		print("#---------------------------------------------------------------------------------------------------")
-		global.current_deck.erase(new_card)
-		print(global.current_deck)
-		hand.add_child(new_card)
 
 func refresh_deck():
-	if global.current_deck.size() <= cards_to_draw:
-		pass
+	if global.current_deck.size() < 5:
+		if global.player_graveyard.size() > 0:
+			for card in global.player_graveyard:
+				global.current_deck.append(card)
+			global.player_graveyard.clear()
+			global.current_deck.shuffle()
+
+
+func current_hand():
+	# Position the cards in the player's hand
+	for i in range(len(global.player_hand)):
+		global.player_hand[i].position = cardslot_position(i) - Vector2(16, 24)
+
+func cardslot_position(index: int) -> Vector2:
+	match index:
+		0:
+			return cardslot_1.position
+		1:
+			return cardslot_2.position
+		2:
+			return cardslot_3.position
+		3:
+			return cardslot_4.position
+		_:
+			return Vector2(-200,-200)
 #---------------------------------------------------------------------------------------------------
-#end turn button -> nächsten Zug starten
+#Zug beenden
 func _on_end_turn_button_pressed():
 	if global.player_shield == 0:
 		global.player_health = global.player_health - damage
@@ -90,8 +108,8 @@ func _on_end_turn_button_pressed():
 		global.player_shield = 0
 	else:
 		global.player_shield = global.player_shield - damage
+	global.player_mana = global.player_max_mana
 	random.randomize()
 	damage = random.randi_range(global.enemyBBR_damage_min, global.enemyBBR_damage_max)
-	global.player_mana = global.player_max_mana
 	draw_cards()
 	current_hand()
