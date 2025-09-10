@@ -1,7 +1,7 @@
 extends Node2D
 
 # Card properties
-var card_cost = 1
+var card_cost = 2
 var draggable = false
 var is_inside_dropable = false
 var body_ref
@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 				# Card effect: Add shield
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.player_shield += 5
+				global.player_shield += 6
+				global.player_latent_shield += 6
 				global.player_mana -= card_cost
 
 				#global.player_graveyard.append(self)
@@ -44,9 +45,10 @@ func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
-		description.text = """block
+		description.text = """crown
 		-------------
-		gain 5 shield"""
+		gain 6 shield
+		for 2 turns"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:

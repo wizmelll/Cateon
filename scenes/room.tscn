@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://do0hb36pk5rf"]
+[gd_scene load_steps=8 format=3 uid="uid://do0hb36pk5rf"]
 
-[ext_resource type="Script" path="res://scripts/room.gd" id="1_87mtg"]
+[ext_resource type="Script" uid="uid://d0w1wqae2r5u0" path="res://scripts/room.gd" id="1_87mtg"]
 [ext_resource type="Texture2D" uid="uid://njhsefggttdb" path="res://assets/tileset.png" id="1_n0vdj"]
 [ext_resource type="PackedScene" uid="uid://fy05ly3e33ak" path="res://scenes/start_battle.tscn" id="3_750s7"]
+[ext_resource type="PackedScene" uid="uid://lhhon62mhrko" path="res://scenes/start_battle2.tscn" id="4_4i7he"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0110b"]
 texture = ExtResource("1_n0vdj")
@@ -103,6 +104,9 @@ shape = SubResource("RectangleShape2D_x70ip")
 debug_color = Color(0.865542, 0.335361, 0.321483, 0.42)
 
 [node name="start battle" parent="." instance=ExtResource("3_750s7")]
-position = Vector2(51, 39)
+position = Vector2(128, 72)
+
+[node name="start battle2" parent="." instance=ExtResource("4_4i7he")]
+position = Vector2(83, 72)
 
 [connection signal="body_entered" from="detect" to="." method="_on_detect_body_entered"]

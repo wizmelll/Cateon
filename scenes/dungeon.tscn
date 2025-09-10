@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtnsybh5ajvru"]
 
-[ext_resource type="Script" path="res://scripts/dungeon.gd" id="1_qup61"]
-[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_hkpnd"]
+[ext_resource type="Script" uid="uid://chvsr2ddrhtnf" path="res://scripts/dungeon.gd" id="1_qup61"]
+[ext_resource type="Script" uid="uid://nfcewvo5kxxs" path="res://scripts/camera_2d.gd" id="2_hkpnd"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_qup61")

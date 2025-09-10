@@ -1,16 +1,13 @@
 extends Node2D
 
-# Card properties
 var card_cost = 1
 var draggable = false
 var is_inside_dropable = false
 var body_ref
 var offset: Vector2
 var initialPos: Vector2
-
 @onready var description: Label = $"../description"
 
-#---------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if draggable:
 		if Input.is_action_just_pressed("click"):
@@ -25,14 +22,18 @@ func _process(delta: float) -> void:
 			if is_inside_dropable and global.player_mana >= card_cost:
 				description.text = ""
 
-				# Card effect: Add shield
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.player_shield += 5
+				global.enemyBBR_health -= 3 + global.player_strenght
+				global.enemyBBR_health -= 3 + global.player_strenght
+				
+				global.enemyBER_health -= 3 + global.player_strenght
+				global.enemyBER_health -= 3 + global.player_strenght
 				global.player_mana -= card_cost
-
+				
 				#global.player_graveyard.append(self)
 				global.player_hand.erase(self)
+				
 
 				queue_free()
 			else:
@@ -44,9 +45,10 @@ func _on_area_2d_mouse_entered() -> void:
 	if not global.is_dragging:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
-		description.text = """block
+		description.text = """pummel
 		-------------
-		gain 5 shield"""
+		deal """ + str(3 + global.player_strenght) + """ damage
+		twice"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:

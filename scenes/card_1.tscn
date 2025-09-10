@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://64y5sbo01cks"]
 
 [ext_resource type="Texture2D" uid="uid://ccxxkmnlucj3d" path="res://assets/blank card (3).png" id="1_8ihii"]
-[ext_resource type="Script" path="res://scripts/card_1.gd" id="1_p7p63"]
+[ext_resource type="Script" uid="uid://ct5nqikgvol7r" path="res://scripts/card_1.gd" id="1_p7p63"]
 [ext_resource type="Texture2D" uid="uid://fm627615dy83" path="res://assets/New Piskel (1).png" id="2_0aurj"]
 [ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="3_ekw8t"]
 
@@ -30,8 +30,7 @@ offset_bottom = 8.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_ekw8t")
 theme_override_font_sizes/font_size = 5
-text = "1
-"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

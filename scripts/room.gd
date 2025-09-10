@@ -13,7 +13,6 @@ func _ready():
 
 func connect_door(direction):
 	if doors.has(direction) and doors[direction] != null:
-		print("Removing door at direction: ", direction)
 		doors[direction].queue_free()
 		doors[direction] = null
 	else:

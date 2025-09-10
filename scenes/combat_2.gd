@@ -22,7 +22,7 @@ var new_card
 func _ready() -> void:
 	#Schaden von Gegner berechnen
 	random.randomize()
-	damage = random.randi_range(global.enemyBBR_damage_min, global.enemyBBR_damage_max)
+	damage = random.randi_range(global.enemyBER_damage_min, global.enemyBER_damage_max)
 	#Deck und Hand laden
 	global.current_deck = global.player_deck.duplicate()
 	global.player_hand = []
@@ -66,7 +66,7 @@ func draw_cards():
 			new_card.position = cardslot_position(i) - Vector2(16, 24)
 
 func _process(delta: float) -> void:
-	if global.enemyBBR_health <= 0:
+	if global.enemyBER_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/dungeon.tscn")
 	elif global.player_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
@@ -108,9 +108,9 @@ func _on_end_turn_button_pressed():
 		global.player_shield = 0
 	else:
 		global.player_shield -= damage
-	if global.enemyBBR_poison > 0:
-		global.enemyBBR_health -= global.enemyBBR_poison
-		global.enemyBBR_poison -= 1
+	if global.enemyBER_poison > 0:
+		global.enemyBER_health -= global.enemyBER_poison
+		global.enemyBER_poison -= 1
 	global.player_shield = 0
 	if global.player_latent_shield > 0:
 		global.player_shield += global.player_latent_shield

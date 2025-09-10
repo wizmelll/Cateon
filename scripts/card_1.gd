@@ -24,7 +24,9 @@ func _process(delta: float) -> void:
 
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.enemyBBR_health -= 5
+				global.enemyBBR_health -= 5 + global.player_strenght
+				
+				global.enemyBER_health -= 5 + global.player_strenght
 				global.player_mana -= card_cost
 				
 				#global.player_graveyard.append(self)
@@ -42,9 +44,8 @@ func _on_area_2d_mouse_entered() -> void:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
 		description.text = """scratch
-		---------
-		deal 5 
-		damage"""
+		-------------
+		deal """ + str(5 + global.player_strenght) + """ damage"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:

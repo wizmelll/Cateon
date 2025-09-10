@@ -3,36 +3,59 @@ extends Node2D
 @onready var map_node = $map
 @onready var player_node: Node2D = $player_container  # Ensure the scene has a dedicated container for the player
 
+@export var player = PLAYER.instantiate()
+
 const ROOM = preload("res://scenes/room.tscn")
 const PLAYER = preload("res://scenes/protag.tscn")
-var dungeon = {}
 
 func _ready():
-	randomize()
-	dungeon = DungeonGen.dungeon_generation()
-	load_map()
+	if global.need_dungeon:
+		randomize()
+		global.dungeon = DungeonGen.dungeon_generation()
+		load_map()
+		save_dungeon_state()  # Save dungeon after it's created
+		global.need_dungeon = false
+	else:
+		global.dungeon = global.store_dungeon
+		load_map()
 
 func load_map():
-	#Dungeon generieren
-	for room_pos in dungeon.keys():
-		var new_room = dungeon[room_pos]
+	# Generate dungeon
+	for room_pos in global.dungeon.keys():
+		var new_room = global.dungeon[room_pos]
 		map_node.add_child(new_room)
 		new_room.position.x = room_pos.x * 256
 		new_room.position.y = room_pos.y * 144
 
-		#Türen schliessen
+		# Close or connect doors
 		for direction in DungeonGen.directions:
-			if !dungeon.has(room_pos + direction):
+			if !global.dungeon.has(room_pos + direction):
 				new_room.close_door(direction)
 			else:
 				new_room.connect_door(direction)
 
-	#Spieler ins Starterzimmer setzen
-	var starting_room = dungeon[Vector2(0, 0)]
-	var player = PLAYER.instantiate()
+	# Place player in the starting room
+	var starting_room = global.dungeon[Vector2(0, 0)]
 	starting_room.add_child(player)
-	player.position = Vector2(128, 72)
+	player.position = Vector2(128, 100)  # Player's initial position
 	player.z_index += 3
 	
-	#Gegner spawnen
+	# Save the current scene (or dungeon)
+	save_dungeon_state()
 	
+	# Spawn enemies
+	spawn_enemies()
+
+func save_dungeon_state():
+	# Save the current dungeon to a global variable
+	global.store_dungeon = {}  # Reset stored dungeon
+	for room_pos in global.dungeon.keys():
+		var room_data = {
+			"position": room_pos,
+			"state": global.dungeon[room_pos]
+		}
+		global.store_dungeon[room_pos] = room_data
+
+func spawn_enemies():
+	# Logic for enemy spawning
+	pass
