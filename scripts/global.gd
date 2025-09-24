@@ -18,7 +18,7 @@ var player_strenght = 0
 var player_mana = 3
 var player_max_mana = 3
 var damage_multiplier = 1
-var player_deck = [CARD_1, CARD_1, CARD_2, CARD_2, CARD_3, CARD_4, CARD_5, CARD_6]
+var player_deck = [CARD_1, CARD_1, CARD_1, CARD_1, CARD_1, CARD_2, CARD_2, CARD_2]
 var current_deck = []
 var player_hand: Array[Node2D] = []
 var player_graveyard = []
@@ -35,6 +35,12 @@ var enemyBER_max_health = 25
 var enemyBER_damage_min = 3
 var enemyBER_damage_max = 6
 var enemyBER_poison = 0
+#bigTailRat
+var enemyBTR_health = 25
+var enemyBTR_max_health = 25
+var enemyBTR_damage_min = 3
+var enemyBTR_damage_max = 6
+var enemyBTR_poison = 0
 #dungeon 
 var need_dungeon = true
 var dungeon

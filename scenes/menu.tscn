@@ -22,20 +22,31 @@ color = Color(0.2, 0.192157, 0.329412, 1)
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 40.0
-offset_right = 160.0
-offset_bottom = 71.0
+offset_top = 16.0
+offset_right = 168.0
+offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("1_lvvuc")
 text = "play"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 200.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("1_lvvuc")
+text = "tutorial"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
 offset_left = 96.0
-offset_top = 88.0
-offset_right = 160.0
-offset_bottom = 119.0
+offset_top = 96.0
+offset_right = 168.0
+offset_bottom = 127.0
 theme_override_fonts/font = ExtResource("1_lvvuc")
 text = "quit"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

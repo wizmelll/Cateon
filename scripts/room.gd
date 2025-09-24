@@ -2,6 +2,7 @@ extends Node2D
 
 # Dictionary mapping directions to door NodePaths
 var doors = {}
+var enemy = 1
 @onready var camera_2d: Camera2D = $Camera2D
 
 func _ready():
@@ -10,6 +11,7 @@ func _ready():
 	doors[Vector2(-1, 0)] = get_node("door_left")
 	doors[Vector2(0, 1)] = get_node("door_down")
 	doors[Vector2(0, -1)] = get_node("door_up")
+	spawn_enemy()
 
 func connect_door(direction):
 	if doors.has(direction) and doors[direction] != null:
@@ -26,3 +28,9 @@ func close_door(direction):
 
 func _on_detect_body_entered(body: Node2D) -> void:
 	DungeonGen.room_entered.emit(self)
+
+func spawn_enemy():
+	if enemy == 1:
+		pass
+	else:
+		pass

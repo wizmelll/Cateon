@@ -12,13 +12,15 @@ func _ready():
 	if global.need_dungeon:
 		randomize()
 		global.dungeon = DungeonGen.dungeon_generation()
-		load_map()
-		save_dungeon_state()  # Save dungeon after it's created
+		save_dungeon_state()
 		global.need_dungeon = false
 	else:
-		global.dungeon = global.store_dungeon
-		load_map()
-
+		global.dungeon = {}
+	for room_pos in global.store_dungeon.keys():
+		var new_room = ROOM.instantiate()
+		global.dungeon[room_pos] = new_room
+	load_map()
+	
 func load_map():
 	# Generate dungeon
 	for room_pos in global.dungeon.keys():
