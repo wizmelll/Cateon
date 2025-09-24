@@ -27,6 +27,9 @@ func _process(delta: float) -> void:
 				global.enemyBBR_health -= 3 + global.player_strenght
 				global.enemyBBR_health -= 3 + global.player_strenght
 				
+				global.enemyBTR_health -= 3 + global.player_strenght
+				global.enemyBTR_health -= 3 + global.player_strenght
+				
 				global.enemyBER_health -= 3 + global.player_strenght
 				global.enemyBER_health -= 3 + global.player_strenght
 				global.player_mana -= card_cost

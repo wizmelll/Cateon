@@ -4,7 +4,6 @@ func _on_body_entered(body):
 	global.enemyBBR_health = global.enemyBBR_max_health
 	global.player_health = global.player_max_health
 	global.player_mana = global.player_max_mana
-	get_parent().remove_child(self)
-	self.free
-	
+	queue_free()
+	get_parent().enemy = 0
 #---------------------------------------------------------------------------------------------------

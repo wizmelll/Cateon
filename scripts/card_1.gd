@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
 				global.enemyBBR_health -= 5 + global.player_strenght
-				
+				global.enemyBTR_health -= 5 + global.player_strenght
 				global.enemyBER_health -= 5 + global.player_strenght
 				global.player_mana -= card_cost
 				

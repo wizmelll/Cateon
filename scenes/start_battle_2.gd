@@ -5,5 +5,6 @@ func _on_body_entered(body):
 	global.player_health = global.player_max_health
 	global.player_mana = global.player_max_mana
 	queue_free()
+	get_parent().enemy = 0
 #---------------------------------------------------------------------------------------------------
 #to-do: save player position

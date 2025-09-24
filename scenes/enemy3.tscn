@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnn7fwpygqsak"]
 
 [ext_resource type="Script" uid="uid://ke1vvxwshf63" path="res://scripts/enemy_3.gd" id="1_o2iik"]
-[ext_resource type="Texture2D" uid="uid://bc6v1f2vsocjf" path="res://assets/blue boots Rat.png" id="2_kroph"]
+[ext_resource type="Texture2D" uid="uid://cvjwgti8ky2nk" path="res://assets/blue boots Rat (1).png" id="2_o2iik"]
 [ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="3_xx6g3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5aio"]
@@ -24,7 +24,7 @@ corner_radius_bottom_left = 30
 script = ExtResource("1_o2iik")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_kroph")
+texture = ExtResource("2_o2iik")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = 18.0

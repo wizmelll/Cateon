@@ -39,14 +39,13 @@ func load_map():
 	# Place player in the starting room
 	var starting_room = global.dungeon[Vector2(0, 0)]
 	starting_room.add_child(player)
-	player.position = Vector2(128, 100)  # Player's initial position
+	player.position = Vector2(128, 120)  # Player's initial position
 	player.z_index += 3
 	
 	# Save the current scene (or dungeon)
 	save_dungeon_state()
 	
 	# Spawn enemies
-	spawn_enemies()
 
 func save_dungeon_state():
 	# Save the current dungeon to a global variable
@@ -57,7 +56,3 @@ func save_dungeon_state():
 			"state": global.dungeon[room_pos]
 		}
 		global.store_dungeon[room_pos] = room_data
-
-func spawn_enemies():
-	# Logic for enemy spawning
-	pass
