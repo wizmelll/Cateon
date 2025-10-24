@@ -1,55 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://do5p0f228rs6u"]
+[gd_scene load_steps=2 format=3 uid="uid://do5p0f228rs6u"]
 
-[ext_resource type="Script" uid="uid://dar50wvpdicmw" path="res://scripts/enemy.gd" id="1_3gn4e"]
-[ext_resource type="Texture2D" uid="uid://bc6v1f2vsocjf" path="res://assets/blue boots Rat.png" id="1_sqk2d"]
-[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="2_amjwv"]
+[sub_resource type="GDScript" id="GDScript_8tegq"]
+script/source = "extends Node2D
+@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var enemy_healthbar: Label = $ProgressBar/enemy_healthbar
+#---------------------------------------------------------------------------------------------------
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5aio"]
-bg_color = Color(0.34902, 0.337255, 0.321569, 0.588235)
-border_color = Color(0, 0, 0, 1)
-border_blend = true
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bud5g"]
-bg_color = Color(0.415686, 0.745098, 0.188235, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+func _physics_process(delta: float) -> void:
+	progress_bar.value = global.enemyBBR_health
+	progress_bar.max_value = global.enemyBBR_max_health
+	enemy_healthbar.text = str(global.enemyBBR_health)
+"
 
 [node name="enemy" type="Node2D"]
-script = ExtResource("1_3gn4e")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sqk2d")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 18.0
-offset_top = -11.0
-offset_right = 21.0
-offset_bottom = 12.0
-theme_override_font_sizes/font_size = 9
-theme_override_styles/background = SubResource("StyleBoxFlat_v5aio")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bud5g")
-max_value = 20.0
-step = 1.0
-rounded = true
-fill_mode = 3
-show_percentage = false
-
-[node name="enemy_healthbar" type="Label" parent="ProgressBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_amjwv")
-theme_override_font_sizes/font_size = 6
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
+script = SubResource("GDScript_8tegq")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://lhhon62mhrko"]
 
-[ext_resource type="Script" uid="uid://citiqaa0wlu22" path="res://scenes/start_battle_2.gd" id="1_w5jju"]
+[ext_resource type="Script" uid="uid://citiqaa0wlu22" path="res://scripts/start_battle_2.gd" id="1_w5jju"]
 [ext_resource type="Texture2D" uid="uid://clferjlldwxfa" path="res://assets/big ears rat.png" id="2_werds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el4wl"]

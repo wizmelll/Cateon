@@ -6,7 +6,11 @@ var is_inside_dropable = false
 var body_ref
 var offset: Vector2
 var initialPos: Vector2
+var combat = "res://scenes/combat.tscn"
 @onready var description: Label = $"../description"
+
+signal card_damage(damage)
+signal card_poison(poison)
 
 func _process(delta: float) -> void:
 	if draggable:
@@ -21,18 +25,14 @@ func _process(delta: float) -> void:
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and global.player_mana >= card_cost:
 				description.text = ""
-
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.enemyBBR_health -= 5 + global.player_strenght
-				global.enemyBTR_health -= 5 + global.player_strenght
-				global.enemyBER_health -= 5 + global.player_strenght
+				emit_signal("card_damage", 5 + global.player_strenght)
+				emit_signal("card_poison", 0)
 				global.player_mana -= card_cost
-				
 				#global.player_graveyard.append(self)
 				global.player_hand.erase(self)
 				
-
 				queue_free()
 			else:
 				description.text = ""
@@ -44,7 +44,6 @@ func _on_area_2d_mouse_entered() -> void:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
 		description.text = """scratch
-		-------------
 		deal """ + str(5 + global.player_strenght) + """ damage"""
 
 func _on_area_2d_mouse_exited() -> void:

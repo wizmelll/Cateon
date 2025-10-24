@@ -9,6 +9,7 @@ const CARD_5 = preload("res://scenes/card_5.tscn")
 const CARD_6 = preload("res://scenes/card_6.tscn")
 #---------------------------------------------------------------------------------------------------
 #player Variabeln
+var player_position = Vector2(80, 90)
 var is_dragging = false
 var player_health = 15
 var player_max_health = 15
@@ -45,3 +46,8 @@ var enemyBTR_poison = 0
 var need_dungeon = true
 var dungeon
 var store_dungeon
+var need_enemies = true
+var enemies
+var store_enemies
+var enemy_number = 0
+var what_enemy

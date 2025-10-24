@@ -10,6 +10,9 @@ var initialPos: Vector2
 
 @onready var description: Label = $"../description"
 
+signal card_damage(damage)
+signal card_poison(poison)
+
 #---------------------------------------------------------------------------------------------------
 func _process(delta: float) -> void:
 	if draggable:
@@ -28,6 +31,8 @@ func _process(delta: float) -> void:
 				# Card effect: Add shield
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
+				emit_signal("card_damage", 0)
+				emit_signal("card_poison", 0)
 				global.player_shield += 6
 				global.player_latent_shield += 6
 				global.player_mana -= card_cost
@@ -46,9 +51,7 @@ func _on_area_2d_mouse_entered() -> void:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
 		description.text = """crown
-		-------------
-		gain 6 shield
-		for 2 turns"""
+		gain 6 shield for 2 turns"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:

@@ -2,6 +2,12 @@ extends Node2D
 
 var random = RandomNumberGenerator.new()
 var damage
+var min_damage
+var max_damage
+var enemy_health
+var enemy_max_health
+var poison
+
 #---------------------------------------------------------------------------------------------------
 var new_card
 #---------------------------------------------------------------------------------------------------
@@ -11,6 +17,8 @@ var new_card
 @onready var manabar_2: Label = $CanvasLayer/TextboxUp/manabar2
 @onready var end_turn_button: Button = $"end turn button"
 @onready var enemy_action: Label = $Thinking/enemy_action
+@onready var progress_bar: ProgressBar = $enemy/ProgressBar
+@onready var enemy_healthbar: Label = $enemy/ProgressBar/enemy_healthbar
 #---------------------------------------------------------------------------------------------------
 #hand
 @onready var hand: Node2D = $CanvasLayer/Hand
@@ -19,10 +27,14 @@ var new_card
 @onready var cardslot_3: StaticBody2D = $cardslot3
 @onready var cardslot_4: StaticBody2D = $cardslot4
 
+@onready var sprite_1: Sprite2D = $enemy/Sprite1
+@onready var sprite_2: Sprite2D = $enemy/Sprite2
+@onready var sprite_3: Sprite2D = $enemy/Sprite3
+
 func _ready() -> void:
-	#Schaden von Gegner berechnen
+	spawn_enemy()
 	random.randomize()
-	damage = random.randi_range(global.enemyBBR_damage_min, global.enemyBBR_damage_max)
+	damage = random.randi_range(min_damage, max_damage)
 	#Deck und Hand laden
 	global.current_deck = global.player_deck.duplicate()
 	global.player_hand = []
@@ -30,6 +42,44 @@ func _ready() -> void:
 	global.current_deck.shuffle()
 	draw_cards()
 	current_hand()
+	for card in global.player_hand:
+		card.card_damage.connect(_card_damage)
+		card.card_poison.connect(_card_poison)
+
+func spawn_enemy():
+	sprite_1.visible = false
+	sprite_2.visible = false
+	sprite_3.visible = false
+	if global.what_enemy == 1:
+		min_damage = global.enemyBBR_damage_min
+		max_damage = global.enemyBBR_damage_max
+		enemy_max_health = global.enemyBBR_max_health
+		enemy_health = enemy_max_health
+		poison = 0
+		sprite_1.visible = true
+		global.what_enemy = 0
+	elif global.what_enemy == 2:
+		min_damage = global.enemyBER_damage_min
+		max_damage = global.enemyBER_damage_max
+		enemy_max_health = global.enemyBER_max_health
+		enemy_health = enemy_max_health
+		poison = 0
+		sprite_2.visible = true
+		global.what_enemy = 0
+	elif global.what_enemy == 3:
+		min_damage = global.enemyBTR_damage_min
+		max_damage = global.enemyBTR_damage_max
+		enemy_max_health = global.enemyBTR_max_health
+		enemy_health = enemy_max_health
+		poison = 0
+		sprite_3.visible = true
+		global.what_enemy = 0
+	
+
+func _card_damage(damage):
+	enemy_health -= damage
+func _card_poison(poison):
+	global.player_shield += poison
 
 func _physics_process(delta: float) -> void: 
 	#setzen von verschiedene Labels
@@ -37,6 +87,8 @@ func _physics_process(delta: float) -> void:
 	player_shield(global.player_shield)
 	player_mana(global.player_mana, global.player_max_mana)
 	enemy_next_action(damage)
+	current_health(enemy_health)
+	
 #---------------------------------------------------------------------------------------------------
 #label managemant
 func player_health(player_health, player_max_health):
@@ -50,6 +102,13 @@ func player_mana(player_mana, player_max_mana):
 
 func enemy_next_action(damage):
 	enemy_action.text = str(damage)
+
+func current_health(enemy_health):
+	enemy_healthbar.text = str(enemy_health)
+	progress_bar.value = enemy_health
+
+func healhtbar(enemy_health, enemy_max_health):
+	progress_bar.max_value = enemy_max_health
 #---------------------------------------------------------------------------------------------------
 #Karten Management
 func draw_cards():
@@ -66,7 +125,7 @@ func draw_cards():
 			new_card.position = cardslot_position(i) - Vector2(16, 24)
 
 func _process(delta: float) -> void:
-	if global.enemyBBR_health <= 0:
+	if enemy_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/dungeon.tscn")
 	elif global.player_health <= 0:
 		get_tree().change_scene_to_file("res://scenes/gameover.tscn")
@@ -108,15 +167,15 @@ func _on_end_turn_button_pressed():
 		global.player_shield = 0
 	else:
 		global.player_shield -= damage
-	if global.enemyBBR_poison > 0:
-		global.enemyBBR_health -= global.enemyBBR_poison
-		global.enemyBBR_poison -= 1
+	if poison > 0:
+		enemy_health -= poison
+		poison -= 1
 	global.player_shield = 0
 	if global.player_latent_shield > 0:
 		global.player_shield += global.player_latent_shield
 		global.player_latent_shield = 0
 	global.player_mana = global.player_max_mana
 	random.randomize()
-	damage = random.randi_range(global.enemyBBR_damage_min, global.enemyBBR_damage_max)
+	damage = random.randi_range(min_damage, max_damage)
 	draw_cards()
 	current_hand()

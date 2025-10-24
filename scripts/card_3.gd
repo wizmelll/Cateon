@@ -8,6 +8,10 @@ var offset: Vector2
 var initialPos: Vector2
 @onready var description: Label = $"../description"
 
+
+signal card_damage(damage)
+signal card_poison(poison)
+
 func _process(delta: float) -> void:
 	if draggable:
 		if Input.is_action_just_pressed("click"):
@@ -21,23 +25,14 @@ func _process(delta: float) -> void:
 			var tween = get_tree().create_tween()
 			if is_inside_dropable and global.player_mana >= card_cost:
 				description.text = ""
-
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.enemyBBR_health -= 3 + global.player_strenght
-				global.enemyBBR_poison += 3
-				
-				global.enemyBTR_health -= 3 + global.player_strenght
-				global.enemyBTR_poison += 3
-				
-				global.enemyBER_health -= 3 + global.player_strenght
-				global.enemyBER_poison += 3
+				emit_signal("card_damage", 3 + global.player_strenght)
+				emit_signal("card_poison", 3)
 				global.player_mana -= card_cost
-				
 				#global.player_graveyard.append(self)
 				global.player_hand.erase(self)
 				
-
 				queue_free()
 			else:
 				description.text = ""
@@ -49,10 +44,7 @@ func _on_area_2d_mouse_entered() -> void:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
 		description.text = """poison bite
-		-------------
-		deal """ + str(3+global.player_strenght) + """ damage
-		and
-		apply 3 poison"""
+		deal """ + str(3+global.player_strenght) + """ damage and apply 3 poison"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:

@@ -8,6 +8,10 @@ var offset: Vector2
 var initialPos: Vector2
 @onready var description: Label = $"../description"
 
+signal card_damage(damage)
+signal card_poison(poison)
+
+
 func _process(delta: float) -> void:
 	if draggable:
 		if Input.is_action_just_pressed("click"):
@@ -24,14 +28,8 @@ func _process(delta: float) -> void:
 
 				tween.tween_property(self, "position", body_ref.position, 0.2).set_ease(Tween.EASE_OUT)
 				tween.bind_node(self)
-				global.enemyBBR_health -= 3 + global.player_strenght
-				global.enemyBBR_health -= 3 + global.player_strenght
-				
-				global.enemyBTR_health -= 3 + global.player_strenght
-				global.enemyBTR_health -= 3 + global.player_strenght
-				
-				global.enemyBER_health -= 3 + global.player_strenght
-				global.enemyBER_health -= 3 + global.player_strenght
+				emit_signal("card_damage", 2 *global.player_strenght + 6)
+				emit_signal("card_poison", 0)
 				global.player_mana -= card_cost
 				
 				#global.player_graveyard.append(self)
@@ -49,9 +47,7 @@ func _on_area_2d_mouse_entered() -> void:
 		draggable = true
 		scale = Vector2(1.1, 1.1)
 		description.text = """pummel
-		-------------
-		deal """ + str(3 + global.player_strenght) + """ damage
-		twice"""
+		deal """ + str(3 + global.player_strenght) + """ damage twice"""
 
 func _on_area_2d_mouse_exited() -> void:
 	if not global.is_dragging:
