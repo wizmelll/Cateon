@@ -18,12 +18,13 @@ config/icon="res://assets/blue boots Rat.png"
 [autoload]
 
 global="*res://scripts/global.gd"
-DungeonGen="*res://scripts/dungeon_gen.gd"
+dungeongeneration="*res://scripts/dungeon_gen.gd"
 
 [display]
 
 window/size/viewport_width=160
 window/size/viewport_height=144
+window/size/mode=3
 window/size/borderless=true
 window/size/window_width_override=1280
 window/size/window_height_override=720

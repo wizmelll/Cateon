@@ -28,7 +28,7 @@ func _animation_player():
 		animation_player.play("walk" + walkDirection)
 #---------------------------------------------------------------------------------------------------
 #die physics process Funktion von Godot ist eine, die ständig updated
-func _physics_process(delta):
+func _physics_process(_delta):
 	_movement()
 	move_and_slide()
 	_animation_player()

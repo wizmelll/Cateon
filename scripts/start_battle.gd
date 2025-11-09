@@ -1,7 +1,7 @@
 extends Area2D
 
-signal enemy_down(this_enemy)
-
+#signal enemy_down(this_enemy)
+#
 #func _on_body_entered(body):
 	#global.player_position = body.position
 	#get_tree().change_scene_to_file("res://scenes/combat.tscn") # wechselt dungeon szene zu combat szene

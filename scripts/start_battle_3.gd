@@ -1,6 +1,6 @@
 extends Area2D
 
-signal enemy_down(this_enemy)
+#signal enemy_down(this_enemy)
 
 #func _on_body_entered(body):
 	#global.player_position = body.position

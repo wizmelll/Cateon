@@ -12,7 +12,7 @@ signal card_damage(damage)
 signal card_poison(poison)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if draggable:
 		if Input.is_action_just_pressed("click"):
 			initialPos = global_position
