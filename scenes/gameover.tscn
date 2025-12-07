@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdmvmpjm3433n"]
+
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="1_y16mu"]
+[ext_resource type="Script" uid="uid://c1u7ymccricb" path="res://scripts/button_2.gd" id="2_oowms"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 320.0
+offset_bottom = 208.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y16mu")
+text = "Game Over"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 88.0
+offset_right = 120.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("1_y16mu")
+text = "quit"
+script = ExtResource("2_oowms")
+
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

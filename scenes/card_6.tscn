@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl7lphxknp6nl"]
+
+[ext_resource type="Script" uid="uid://b3ivr3grwvi2g" path="res://scripts/card_6.gd" id="1_yo0lf"]
+[ext_resource type="Texture2D" uid="uid://ccxxkmnlucj3d" path="res://assets/blank card (3).png" id="2_it3sw"]
+[ext_resource type="Texture2D" uid="uid://c3eeco56n7k4g" path="res://assets/card6-catnip.png" id="3_4e612"]
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="4_5uayc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeoep"]
+size = Vector2(32, 48)
+
+[node name="card6" type="Node2D"]
+position = Vector2(-16, -24)
+script = ExtResource("1_yo0lf")
+
+[node name="template" type="Sprite2D" parent="."]
+position = Vector2(16, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("2_it3sw")
+
+[node name="art" type="Sprite2D" parent="."]
+position = Vector2(16, 28)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_4e612")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_5uayc")
+theme_override_font_sizes/font_size = 5
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 24)
+shape = SubResource("RectangleShape2D_xeoep")
+
+[node name="Label2" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

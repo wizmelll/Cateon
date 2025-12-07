@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://do5p0f228rs6u"]
+
+[sub_resource type="GDScript" id="GDScript_8tegq"]
+script/source = "extends Node2D
+@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var enemy_healthbar: Label = $ProgressBar/enemy_healthbar
+#---------------------------------------------------------------------------------------------------
+
+func _physics_process(delta: float) -> void:
+	progress_bar.value = global.enemyBBR_health
+	progress_bar.max_value = global.enemyBBR_max_health
+	enemy_healthbar.text = str(global.enemyBBR_health)
+"
+
+[node name="enemy" type="Node2D"]
+script = SubResource("GDScript_8tegq")

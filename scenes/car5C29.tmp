@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://64y5sbo01cks"]
+
+[ext_resource type="Texture2D" uid="uid://ccxxkmnlucj3d" path="res://assets/blank card (3).png" id="1_8ihii"]
+[ext_resource type="Script" path="res://scripts/card_1.gd" id="1_p7p63"]
+[ext_resource type="Texture2D" uid="uid://fm627615dy83" path="res://assets/New Piskel (1).png" id="2_0aurj"]
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="3_ekw8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeoep"]
+size = Vector2(32, 48)
+
+[node name="card1" type="Control"]
+custom_minimum_size = Vector2(30, 48)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_p7p63")
+
+[node name="template" type="Sprite2D" parent="."]
+position = Vector2(16, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("1_8ihii")
+
+[node name="art" type="Sprite2D" parent="."]
+position = Vector2(16, 28)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_0aurj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 19.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ekw8t")
+theme_override_font_sizes/font_size = 5
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 24)
+shape = SubResource("RectangleShape2D_xeoep")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

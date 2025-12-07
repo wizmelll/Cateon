@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fy05ly3e33ak"]
+
+[ext_resource type="Script" uid="uid://b4x6nxvqxey1o" path="res://scripts/start_battle.gd" id="1_4jl1u"]
+[ext_resource type="Texture2D" uid="uid://bc6v1f2vsocjf" path="res://assets/blue boots Rat.png" id="2_hjghu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4wl"]
+size = Vector2(24, 26)
+
+[node name="start battle" type="Area2D"]
+script = ExtResource("1_4jl1u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hjghu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_el4wl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

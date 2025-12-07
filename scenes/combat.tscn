@@ -1,0 +1,236 @@
+[gd_scene load_steps=20 format=3 uid="uid://byjlmiwndenag"]
+
+[ext_resource type="Texture2D" uid="uid://7bkl4h48n0sw" path="res://assets/textbox up (1).png" id="1_2dk00"]
+[ext_resource type="Texture2D" uid="uid://l4ekdijcsqge" path="res://assets/New Piskel.png" id="1_k2pwd"]
+[ext_resource type="Script" uid="uid://ceeh14ay06xb2" path="res://scripts/combat.gd" id="1_qbyce"]
+[ext_resource type="Texture2D" uid="uid://3k3uvoo0fqf6" path="res://assets/heart (1).png" id="3_6rqox"]
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="4_tealo"]
+[ext_resource type="Texture2D" uid="uid://daho32g7g5wvm" path="res://assets/mana (1).png" id="5_snf0j"]
+[ext_resource type="Texture2D" uid="uid://bhpm6lkpy8u7b" path="res://assets/card2-defend (1).png" id="6_7nnk6"]
+[ext_resource type="PackedScene" uid="uid://whl7acuiflf5" path="res://scenes/cardslot_1.tscn" id="10_rm3h2"]
+[ext_resource type="PackedScene" uid="uid://do5p0f228rs6u" path="res://scenes/enemy.tscn" id="11_gvie1"]
+[ext_resource type="Script" uid="uid://dq8ethuk8u27q" path="res://scripts/end_turn_button.gd" id="12_ei6dk"]
+[ext_resource type="Texture2D" uid="uid://bc6v1f2vsocjf" path="res://assets/blue boots Rat.png" id="12_hmy61"]
+[ext_resource type="Texture2D" uid="uid://clferjlldwxfa" path="res://assets/big ears rat.png" id="13_0qyji"]
+[ext_resource type="Texture2D" uid="uid://b437kgkwriqjh" path="res://assets/thinking.png" id="13_6s7ae"]
+[ext_resource type="Texture2D" uid="uid://cvjwgti8ky2nk" path="res://assets/blue boots Rat (1).png" id="14_xkyey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3o6r"]
+size = Vector2(158, 49)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2f5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qyji"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvie1"]
+bg_color = Color(0.34902, 0.337255, 0.321569, 0.588235)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmy61"]
+bg_color = Color(0.415686, 0.745098, 0.188235, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="combat" type="Node2D"]
+script = ExtResource("1_qbyce")
+
+[node name="background" type="Sprite2D" parent="."]
+modulate = Color(0.54099, 0.54099, 0.54099, 1)
+z_index = -5
+position = Vector2(80, 47.5)
+scale = Vector2(0.625, 0.6319444)
+texture = ExtResource("1_k2pwd")
+metadata/_edit_lock_ = true
+
+[node name="TexboxBottom" type="Sprite2D" parent="."]
+position = Vector2(80, 126.5)
+scale = Vector2(0.625, 1.7083334)
+texture = ExtResource("1_2dk00")
+
+[node name="description_box" type="Sprite2D" parent="TexboxBottom"]
+z_index = -1
+position = Vector2(3.2000046, -14.341459)
+scale = Vector2(1.5999999, 0.58536583)
+texture = ExtResource("1_2dk00")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextboxUp" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(80, 8.5)
+scale = Vector2(0.625, 0.7083333)
+texture = ExtResource("1_2dk00")
+
+[node name="shield" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(-35.2, 0)
+scale = Vector2(0.6832, 0.6028235)
+texture = ExtResource("6_7nnk6")
+
+[node name="manabar2" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = 20.998398
+offset_top = -10.588235
+offset_right = 60.998405
+offset_bottom = 12.411765
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+vertical_alignment = 1
+
+[node name="Mana2" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(11.398, 0)
+scale = Vector2(0.6832, 0.6028235)
+texture = ExtResource("5_snf0j")
+
+[node name="end turn" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = 75.2
+offset_top = 26.11765
+offset_right = 143.19998
+offset_bottom = 49.11765
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+text = "end turn"
+
+[node name="shieldbar" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -25.599998
+offset_top = -10.588235
+offset_right = 14.400002
+offset_bottom = 12.411765
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+vertical_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="CanvasLayer/TextboxUp"]
+position = Vector2(-110.4, 0)
+scale = Vector2(0.6833328, 0.6029407)
+texture = ExtResource("3_6rqox")
+
+[node name="health" type="Label" parent="CanvasLayer/TextboxUp"]
+offset_left = -100.8
+offset_top = -10.588235
+offset_right = -60.800003
+offset_bottom = 12.411765
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+vertical_alignment = 1
+
+[node name="Hand" type="Node2D" parent="CanvasLayer"]
+
+[node name="description" type="Label" parent="CanvasLayer/Hand"]
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 154.0
+offset_bottom = 110.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 4
+
+[node name="player card drop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player card drop"]
+position = Vector2(80, 66.5)
+shape = SubResource("RectangleShape2D_m3o6r")
+debug_color = Color(0, 0.562919, 0.0779877, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="cardslot1" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(19, 137)
+
+[node name="cardslot2" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(60, 137)
+
+[node name="cardslot3" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(100, 137)
+
+[node name="cardslot4" parent="." instance=ExtResource("10_rm3h2")]
+position = Vector2(141, 137)
+
+[node name="end turn button" type="Button" parent="."]
+offset_left = 118.0
+offset_top = 17.0
+offset_right = 173.0
+offset_bottom = 41.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s2f5b")
+script = ExtResource("12_ei6dk")
+
+[node name="end turn button2" type="Sprite2D" parent="end turn button"]
+position = Vector2(128, 12)
+texture = ExtResource("1_2dk00")
+
+[node name="Thinking" type="Sprite2D" parent="."]
+position = Vector2(60, 50)
+texture = ExtResource("13_6s7ae")
+
+[node name="enemy_action" type="Label" parent="Thinking"]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 1.0
+offset_bottom = 2.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="enemy" parent="." instance=ExtResource("11_gvie1")]
+position = Vector2(82, 66)
+script = null
+
+[node name="Sprite1" type="Sprite2D" parent="enemy"]
+visible = false
+texture = ExtResource("12_hmy61")
+
+[node name="Sprite2" type="Sprite2D" parent="enemy"]
+visible = false
+texture = ExtResource("13_0qyji")
+
+[node name="Sprite3" type="Sprite2D" parent="enemy"]
+visible = false
+texture = ExtResource("14_xkyey")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="enemy" groups=["dropable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_0qyji")
+debug_color = Color(0.7458707, 0.20959926, 0.99999994, 0.41960785)
+
+[node name="ProgressBar" type="ProgressBar" parent="enemy"]
+offset_left = 18.0
+offset_top = -11.0
+offset_right = 21.0
+offset_bottom = 12.0
+theme_override_font_sizes/font_size = 9
+theme_override_styles/background = SubResource("StyleBoxFlat_gvie1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hmy61")
+max_value = 20.0
+step = 1.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="enemy_healthbar" type="Label" parent="enemy/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tealo")
+theme_override_font_sizes/font_size = 6
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="player card drop" to="." method="_on_player_card_drop_area_entered"]
+[connection signal="mouse_entered" from="end turn button" to="." method="_on_end_turn_button_mouse_entered"]
+[connection signal="mouse_exited" from="end turn button" to="." method="_on_end_turn_button_mouse_exited"]
+[connection signal="pressed" from="end turn button" to="." method="_on_end_turn_button_pressed"]

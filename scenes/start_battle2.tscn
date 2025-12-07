@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://lhhon62mhrko"]
+
+[ext_resource type="Script" uid="uid://citiqaa0wlu22" path="res://scripts/start_battle_2.gd" id="1_w5jju"]
+[ext_resource type="Texture2D" uid="uid://clferjlldwxfa" path="res://assets/big ears rat.png" id="2_werds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_el4wl"]
+size = Vector2(24, 26)
+
+[node name="start battle" type="Area2D"]
+script = ExtResource("1_w5jju")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_werds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_el4wl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

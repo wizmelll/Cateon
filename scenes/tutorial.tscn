@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://do66v1k2m4s4"]
+
+[ext_resource type="Script" uid="uid://ckip5hphybwva" path="res://scripts/tutorial.gd" id="1_8ho6b"]
+[ext_resource type="Texture2D" uid="uid://dwk8g6dr1e1jr" path="res://assets/Screenshot 2025-09-10 091539.png" id="2_ph3nu"]
+[ext_resource type="Texture2D" uid="uid://7bkl4h48n0sw" path="res://assets/textbox up (1).png" id="3_ph3nu"]
+[ext_resource type="FontFile" uid="uid://b600u7e6i3f47" path="res://assets/PressStart2P-vaV7.ttf" id="4_4kmhl"]
+[ext_resource type="Texture2D" uid="uid://c51q4rqyrc3w4" path="res://assets/Screenshot (3).png" id="5_cq4me"]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_8ho6b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -65.0
+offset_top = -25.0
+offset_right = 330.0
+offset_bottom = 172.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="bot textbox" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(128, 126.5)
+scale = Vector2(1, 1.45833)
+texture = ExtResource("3_ph3nu")
+
+[node name="Label2" type="Label" parent="bot textbox"]
+offset_left = -119.0
+offset_top = -7.0
+offset_right = 134.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("4_4kmhl")
+theme_override_font_sizes/font_size = 4
+
+[node name="Label3" type="Label" parent="bot textbox"]
+offset_left = 118.0
+offset_top = 2.4
+offset_right = 124.0
+offset_bottom = 8.4
+theme_override_fonts/font = ExtResource("4_4kmhl")
+theme_override_font_sizes/font_size = 6
+text = ">"
+
+[node name="mid" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(63, 67)
+scale = Vector2(0.301848, 0.301848)
+texture = ExtResource("2_ph3nu")
+
+[node name="full" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(129, 55)
+scale = Vector2(0.152999, 0.152999)
+texture = ExtResource("2_ph3nu")
+
+[node name="top" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(239.36, 134.538)
+scale = Vector2(0.37507, 0.37507)
+texture = ExtResource("2_ph3nu")
+
+[node name="bot" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(142.46, 29.425)
+scale = Vector2(0.224338, 0.224338)
+texture = ExtResource("2_ph3nu")
+
+[node name="dungeon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(134, 50)
+scale = Vector2(0.2433, 0.2433)
+texture = ExtResource("5_cq4me")
